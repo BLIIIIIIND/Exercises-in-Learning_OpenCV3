@@ -1,0 +1,37 @@
+#include <opencv.hpp>
+#include <iostream>
+
+using namespace cv;
+using namespace std;
+
+int g_grade = 2;
+
+void onTrackbarSlide(int pos, void*) {
+	g_grade = pos + 2;
+}
+
+int main() {
+	int slider_position = 0;
+	namedWindow("input", WINDOW_AUTOSIZE), namedWindow("ouput", WINDOW_AUTOSIZE);
+	VideoCapture cap;
+	cap.open("C:/Users/BLIIIIIIND/Desktop/test.mp4");
+	double fps = cap.get(CAP_PROP_FPS);
+	Size size(
+		(int)cap.get(CAP_PROP_FRAME_WIDTH) / 2,
+		(int)cap.get(CAP_PROP_FRAME_HEIGHT) / 2
+	);
+	VideoWriter writer;
+	Mat frame, pry_frame;
+	createTrackbar("grade", "input", &slider_position, 6, onTrackbarSlide);
+	while (1) {
+		cap >> frame;
+		if (frame.empty()) break;
+		imshow("input", frame);
+		pyrDown(frame, pry_frame);
+		for (short i = 2;i < g_grade;i++) 
+			pyrDown(pry_frame, pry_frame);
+		imshow("output", pry_frame);
+		char c = waitKey(10);
+		if (c == 27) break;
+	}
+}
