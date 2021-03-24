@@ -1,0 +1,34 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	srand(getTickCount());
+	Matx33f m33f;
+	for (short i = 0;i < 3;i++)
+		for (short j = 0;j < 3;j++)
+			m33f(i, j) = (float)rand() / 100;
+	Vec3f v3f;
+	for (short i = 0;i < 3;i++)
+		v3f(i) = (float)rand() / 100;
+	for (short i = 0;i < 3;i++) {
+		for (short j = 0;j < 3;j++) {
+			cout.width(6);
+			cout << m33f(i, j) << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (short i = 0;i < 3;i++) {
+		cout.width(6);
+		cout << v3f(i) << " ";
+	}
+	cout << endl;
+	Matx31f m31f = v3f;
+	for (short i = 0;i < 3;i++) {
+		cout.width(6);
+		cout << m31f(i, 0) << " ";
+	}
+}
