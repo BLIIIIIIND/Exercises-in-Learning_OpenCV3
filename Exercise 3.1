@@ -1,0 +1,17 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	float test_f = 231.15448;
+	cout << abs(test_f) << " " << round(test_f) << " " << ceil(test_f) << " " << floor(test_f) << endl;
+	srand(getTickCount());
+	Vec2f v2f{ (float)rand() / 100,(float)rand() / 100 };
+	cout << v2f[0] << " " << v2f[1] << endl;
+	Point2f p2f(v2f[0], v2f[1]);
+	cout << p2f.x << " " << p2f.y << endl;
+	Point p((int)p2f.x, (int)p2f.y);
+	cout << p.x << " " << p.y << endl;
+}
