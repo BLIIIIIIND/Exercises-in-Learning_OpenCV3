@@ -1,0 +1,37 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+/*origin is tl.   
+* a****b   if spined:      a 
+* *    *                  *  *
+* c****d                 *     b
+*                       c     *
+*                        *   *
+*                          d
+*/                      
+
+int sum_of_area(Mat img, Point2i a, Point2i b, Point2i c, Point2i d) {
+	Mat sum_of_each_point = Mat::zeros(100, 200, CV_32SC1);
+	sum_of_each_point.at<int>(0, 0) = img.at<uchar>(0, 0);
+	for (short i = 1;i < 200;i++) 
+		sum_of_each_point.at<int>(0, i) = sum_of_each_point.at<int>(0, i - 1) + img.at<uchar>(0, i);
+	for (short i = 1;i < 100;i++)
+		sum_of_each_point.at<int>(i, 0) = sum_of_each_point.at<int>(i - 1, 0) + img.at<uchar>(i, 0);
+	for (short y = 1;y < 100;y++)
+		for (short x = 1;x < 200;x++)
+			sum_of_each_point.at<int>(y, x) = sum_of_each_point.at<int>(y, x - 1) + sum_of_each_point.at<int>(y - 1, x)
+			+ img.at<uchar>(y, x) - sum_of_each_point.at<int>(y - 1, x - 1);
+		int sum = sum_of_each_point.at<int>(d) - sum_of_each_point.at<int>(b)
+		- sum_of_each_point.at<int>(c) + sum_of_each_point.at<int>(a);
+	return sum;
+}
+
+int main() {
+	Mat random(100, 200, CV_8UC1);
+	RNG rng(getTickCount());
+	rng.fill(random, RNG::UNIFORM, 0, 256);
+	cout << sum_of_area(random, { 10, 20 }, { 10, 40 }, { 20, 20 }, { 20, 40 });
+}
