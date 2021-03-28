@@ -1,0 +1,241 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <vector>
+#include <iterator>
+
+using namespace std;
+using namespace cv;
+
+Mat number_image(short n) {
+	Mat n_image = Mat::zeros(20, 10, CV_8UC1);
+	switch (n) {
+	case 0:
+		for (short i = 2;i < 18;i++){
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		break;
+	case 1:
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 4) = 255;
+			n_image.at<uchar>(i, 5) = 255;
+		}
+		break;
+	case 2:
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		for (short i = 2;i < 11;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 11;i < 18;i++) {
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		break;
+	case 3:
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		break;
+	case 4:
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+		}
+		for (short i = 2;i < 11;i++) {
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		break;
+	case 5:
+		for (short i = 2;i < 11;i++) {
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		for (short i = 11;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		break;
+	case 6:
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		for (short i = 11;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		break;
+	case 7:
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+		}
+		break;
+	case 8:
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+			n_image.at<uchar>(16, i) = 255;
+			n_image.at<uchar>(17, i) = 255;
+		}
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		break;
+	case 9:
+		for (short i = 1;i < 9;i++) {
+			n_image.at<uchar>(2, i) = 255;
+			n_image.at<uchar>(3, i) = 255;
+			n_image.at<uchar>(9, i) = 255;
+			n_image.at<uchar>(10, i) = 255;
+		}
+		for (short i = 2;i < 18;i++) {
+			n_image.at<uchar>(i, 7) = 255;
+			n_image.at<uchar>(i, 8) = 255;
+		}
+		for (short i = 2;i < 11;i++) {
+			n_image.at<uchar>(i, 1) = 255;
+			n_image.at<uchar>(i, 2) = 255;
+		}
+		break;
+	}
+	return n_image;
+}
+Mat change_number_color(Mat n_image, int red, int green, int blue) {
+	Mat n_color(20, 10, CV_8UC3, (0, 0, 0));
+	for (int i = 0;i < 10;i++)
+		for (int j = 0;j < 20;j++)
+			if (n_image.at<uchar>(j, i) == 255) 
+				n_color.at<Vec3b>(j, i) = Vec3b(red, green, blue);
+	return n_color;
+}
+
+int main() {
+	Mat screen = Mat::zeros(500, 500, CV_8UC1);
+	namedWindow("Screen", WINDOW_FREERATIO);
+	imshow("Screen", screen);
+	waitKey(10);
+	cout << "Input the number to show it, input b to clear the newest number, " << endl;
+	cout << "input n to make the next number go to the next line, input c to make the number colorful:" << endl;
+	char input;
+	Rect n_temp_place = Rect(0, 0, 10, 20);
+	vector<Point2i>n_places;
+	Mat show_n = Mat::zeros(20, 10, CV_8UC1);
+	Mat erase = Mat::zeros(20, 10, CV_8UC1);
+	while (cin >> input) {
+		if (48 <= (int)input && (int)input <= 57) {
+			show_n = number_image((int)input - 48);
+			show_n.copyTo(screen(n_temp_place));
+			imshow("Screen", screen);
+			waitKey(10);
+			n_places.push_back(n_temp_place.tl());
+			if (n_temp_place.x <= 480)
+				n_temp_place.x += 10;
+			else if (n_temp_place.y <= 460) {
+				n_temp_place.x = 0;
+				n_temp_place.y += 20;
+			}
+			else {
+				cout << "Can't do that any more." << endl;
+				waitKey(0);
+				break;
+			}
+		}
+		else if (input == 'b') {
+			n_temp_place.x = (*(n_places.end() - 1)).x;
+			n_temp_place.y = (*(n_places.end() - 1)).y;
+			n_places.pop_back();
+			erase.copyTo(screen(n_temp_place));
+			imshow("Screen", screen);
+			waitKey(10);
+		}
+		else if (input == 'n') {
+			if (n_temp_place.y <= 460) {
+				n_temp_place.x = 0;
+				n_temp_place.y += 20;
+			}
+			else {
+				cout << "Can't do that any more." << endl;
+				waitKey(0);
+				break;
+			}
+		}
+		else if (input == 'c') {
+			Mat screen_color(500, 500, CV_8UC3, (0, 0, 0));
+			Mat show_n_color(20, 10, CV_8UC3, (0, 0, 0));
+			int red, green, blue;
+			srand(getTickCount());
+			for (vector<Point2i>::iterator it = n_places.begin();it < n_places.end();it++) {
+				red = rand() % 256;
+				green = rand() % 256;
+				blue = rand() % 256;
+				n_temp_place.x = (*it).x;
+				n_temp_place.y = (*it).y;
+				show_n_color = change_number_color(screen(n_temp_place), red, green, blue);
+				show_n_color.copyTo(screen_color(n_temp_place));
+			}
+			imshow("Screen", screen_color);
+			waitKey(0);
+			break;
+		}
+		else {
+			cout << "Please input number or a correct letter:";
+			continue;
+		}
+	}
+}
