@@ -1,0 +1,15 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	Mat img(100, 100, CV_8UC3, (0, 0, 0));
+	Point2i a(20, 5), b(40, 20);
+	for (short x = 20;x <= 40;x++) 
+		for (short y = 5;y < 20;y++)
+			img.at<Vec3b>(y, x) = Vec3b(0, 255, 0);
+	imshow("Screen", img);
+	waitKey(0);
+}
