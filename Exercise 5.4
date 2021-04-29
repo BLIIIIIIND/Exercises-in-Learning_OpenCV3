@@ -1,0 +1,15 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	Mat img = Mat::zeros(210, 210, CV_8UC1);
+	for (short i = 0;i < 10;i++) {
+		Rect rect((95 - 10 * i), 10 * i, 20 * (i + 1), 10);
+		img(rect).setTo(255);
+	}
+	imshow("Screen", img);
+	waitKey(0);
+}
