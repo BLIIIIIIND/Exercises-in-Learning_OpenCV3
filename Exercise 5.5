@@ -1,0 +1,15 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	Mat img = imread("C:/Users/BLIIIIIIND/Desktop/test.jpg");
+	Rect ROI_1(5, 10, 20, 30), ROI_2(50, 60, 20, 30);
+	bitwise_not(img(ROI_1), img(ROI_1));
+	bitwise_not(img(ROI_2), img(ROI_2));
+	namedWindow("screen", WINDOW_FREERATIO);
+	imshow("screen", img);
+	waitKey(0);
+}
