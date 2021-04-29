@@ -1,0 +1,12 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	Mat Circle = Mat::zeros(100, 100, CV_8UC3);
+	circle(Circle, { 50,50 }, 30, Scalar(150, 50, 100));
+	imshow("Screnn", Circle);
+	waitKey(0);
+}
