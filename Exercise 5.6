@@ -1,0 +1,24 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+	Mat img = imread("C:/Users/BLIIIIIIND/Desktop/test.jpg",IMREAD_COLOR);
+	vector<Mat>color;
+	split(img, color);
+	namedWindow("screen", WINDOW_FREERATIO);
+	imshow("screen", color[1]);
+	waitKey(100000);
+	Mat clone1 = color[1].clone();
+	Mat clone2 = color[1].clone();
+	double min, max;
+	minMaxLoc(color[1], &min, &max);
+	cout << "min:" << min << " max:" << max << endl;
+	clone1.setTo((uchar)(max - min) / 2);
+	clone2.setTo(0);
+	compare(color[1], clone1, clone2, CMP_GE);
+	imshow("screen", clone2);
+	waitKey(0);
+}
